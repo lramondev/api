@@ -48,25 +48,17 @@ class Auth extends Controller
 
   public function refresh() {
     try {
-      // Pega o token do header manualmente (mesmo expirado)
       $token = request()->bearerToken();
-      if (!$token) {
-          throw new \Exception();
-      }
+      if (!$token) 
+        throw new \Exception();
 
-      // Busca o token no banco (ignora expiration para refresh)
       $personalAccessToken = \Laravel\Sanctum\PersonalAccessToken::findToken($token);
-
-      if (!$personalAccessToken) {
+      if (!$personalAccessToken)
           throw new \Exception();
-      }
-
+  
       $user = $personalAccessToken->tokenable;
-
-      // Revoga o token antigo
       $personalAccessToken->delete();
 
-      // Gera novo token
       $permissions = $user->admin 
           ? ['*'] 
           : $user->roles->flatMap(fn($role) => $role->permissions->pluck('name'))
