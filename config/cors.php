@@ -19,7 +19,11 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [ 'https://dev.whatsappos.local:4200' ],
+    'allowed_origins' => [ 
+        'https://whatsappos.com.br',
+        'https://www.whatsappos.com.br',
+        'https://dev.whatsappos.local:4200'
+    ],
 
     'allowed_origins_patterns' => [],
 

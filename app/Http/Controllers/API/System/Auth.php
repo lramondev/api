@@ -64,10 +64,10 @@ class Auth extends Controller
           : $user->roles->flatMap(fn($role) => $role->permissions->pluck('name'))
               ->unique()->values()->all();
 
-      $newToken = $user->createToken('api', $permissions, now()->addMinutes(10));
+      $token = $user->createToken('api', $permissions, now()->addMinutes(10));
 
       return [
-        'token' => $newToken
+        'token' => $token
       ];
 
     } catch (\Exception $e) {
