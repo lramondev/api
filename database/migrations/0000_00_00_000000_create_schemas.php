@@ -11,6 +11,14 @@ return new class extends Migration
    */
   public function up(): void
   {
+
+    \DB::statement("CREATE SCHEMA IF NOT EXISTS system;");
+    \DB::statement("CREATE SCHEMA IF NOT EXISTS common;");
+    \DB::statement("CREATE SCHEMA IF NOT EXISTS pessoa;");
+    \DB::statement("CREATE SCHEMA IF NOT EXISTS comercial;");
+    \DB::statement("CREATE SCHEMA IF NOT EXISTS manutencao;");
+
+    /*
     \DB::statement("IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'system') 
       EXEC('CREATE SCHEMA [system] AUTHORIZATION [dbo]');");
 
@@ -25,6 +33,7 @@ return new class extends Migration
 
     \DB::statement("IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'manutencao') 
       EXEC('CREATE SCHEMA [manutencao] AUTHORIZATION [dbo]');");
+    */
   }
 
   /**
